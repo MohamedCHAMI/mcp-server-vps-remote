@@ -1,13 +1,13 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
-import { exec } from "child_process";
+import { execFile } from "child_process";
 import util from "util";
 
-const execAsync = util.promisify(exec);
+const execFileAsync = util.promisify(execFile);
 
 const server = new Server(
-  { name: "vps-remote-mcp", version: "1.0.0" },
+  { name: "vps-remote-mcp", version: "1.0.1" },
   { capabilities: { tools: {} } }
 );
 
@@ -65,29 +65,22 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   try {
     if (name === "execute_ssh_command") {
       const { user, host, command } = args;
-      // We escape double quotes to safely pass the command, though simpler is just to single quote the whole thing.
-      // Easiest robust way without heavy escaping logic is to pass it base64 encoded and decode it on the remote side,
-      // but let's try direct first.
-      const escapedCmd = command.replace(/'/g, "'\\''");
-      const sshCommand = `ssh ${user}@${host} '${escapedCmd}'`;
-      
-      const { stdout, stderr } = await execAsync(sshCommand, { timeout: 60000 });
+      // Using execFile avoids local shell injection vulnerabilities
+      const { stdout, stderr } = await execFileAsync("ssh", [`${user}@${host}`, command], { timeout: 60000 });
       return {
         content: [{ type: "text", text: `STDOUT:\n${stdout}\nSTDERR:\n${stderr}` }],
       };
     } 
     else if (name === "scp_upload") {
       const { user, host, local_path, remote_path } = args;
-      const cmd = `scp "${local_path}" ${user}@${host}:"${remote_path}"`;
-      const { stdout, stderr } = await execAsync(cmd, { timeout: 60000 });
+      const { stdout, stderr } = await execFileAsync("scp", [local_path, `${user}@${host}:${remote_path}`], { timeout: 60000 });
       return {
         content: [{ type: "text", text: `Upload successful.\nSTDOUT:\n${stdout}\nSTDERR:\n${stderr}` }],
       };
     }
     else if (name === "scp_download") {
       const { user, host, remote_path, local_path } = args;
-      const cmd = `scp ${user}@${host}:"${remote_path}" "${local_path}"`;
-      const { stdout, stderr } = await execAsync(cmd, { timeout: 60000 });
+      const { stdout, stderr } = await execFileAsync("scp", [`${user}@${host}:${remote_path}`, local_path], { timeout: 60000 });
       return {
         content: [{ type: "text", text: `Download successful.\nSTDOUT:\n${stdout}\nSTDERR:\n${stderr}` }],
       };

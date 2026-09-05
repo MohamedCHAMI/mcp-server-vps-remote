@@ -1,27 +1,53 @@
-# MCP Server: VPS Remote Control
+<div align="center">
+  <h1>🚀 MCP Server: VPS Remote Control</h1>
+  <p><strong>A secure, seamless bridge between your AI Assistant (like Claude) and your remote servers.</strong></p>
+</div>
 
-A Model Context Protocol (MCP) server that enables AI assistants (like Claude) to execute SSH commands and transfer files (SCP) directly to your remote VPS environments.
+---
 
-This allows Claude to securely act as a remote control, executing commands on a remote server directly from your local terminal.
+## 📖 Overview
 
-## Features
+The **VPS Remote Control** MCP (Model Context Protocol) server allows your local AI assistant to directly execute commands and transfer files on any of your remote servers via SSH and SCP.
 
-- **`execute_ssh_command`**: Execute arbitrary bash commands on a remote VPS via SSH.
-- **`scp_upload`**: Upload local files to the remote server.
-- **`scp_download`**: Download remote files to your local machine.
+Instead of manually logging into your VPS to check logs, restart services, or deploy code, you simply tell your AI to do it. The AI uses this MCP server to seamlessly execute the necessary bash commands directly on your server.
 
-*Note: This server assumes you have SSH key-based authentication configured on your machine for the target VPS. It does not handle interactive password prompts.*
+### How it Works
 
-## Installation
+```mermaid
+sequenceDiagram
+    participant User
+    participant AI (Claude Code)
+    participant MCP Server (Local)
+    participant VPS (Remote Server)
+    
+    User->>AI (Claude Code): "Check the nginx logs on my VPS"
+    AI (Claude Code)->>MCP Server (Local): Call tool: execute_ssh_command
+    Note over MCP Server (Local): Safely spawns SSH process
+    MCP Server (Local)->>VPS (Remote Server): ssh user@host 'tail -n 50 /var/log/nginx/error.log'
+    VPS (Remote Server)-->>MCP Server (Local): Returns logs
+    MCP Server (Local)-->>AI (Claude Code): Passes logs back to AI
+    AI (Claude Code)-->>User: "Here are the errors I found in your logs..."
+```
 
-1. Clone this repository to your machine (e.g., `~/.claude/mcp/vps_remote`):
+## ✨ Features
+
+- 💻 **`execute_ssh_command`**: Execute arbitrary bash commands on a remote VPS via SSH.
+- 📤 **`scp_upload`**: Securely upload local files or directories to the remote server.
+- 📥 **`scp_download`**: Download remote files from the server directly to your local machine.
+- 🔒 **Secure by Design**: Built using `execFile` to prevent local shell injection vulnerabilities. Zero hardcoded passwords or IP addresses.
+
+## ⚙️ Installation & Setup
+
+1. **Clone the Repository**
+   Clone this project to a directory on your machine (e.g., `~/.claude/mcp/vps_remote`):
    ```bash
    git clone https://github.com/MohamedCHAMI/mcp-server-vps-remote.git ~/.claude/mcp/vps_remote
    cd ~/.claude/mcp/vps_remote
    npm install
    ```
 
-2. Configure Claude Code to use this MCP server. Add the following to your global `~/.claude.json` under `mcpServers`:
+2. **Configure Claude Code**
+   Add the following configuration to your global `~/.claude.json` file under the `mcpServers` object:
 
    ```json
    "mcpServers": {
@@ -29,30 +55,33 @@ This allows Claude to securely act as a remote control, executing commands on a 
        "type": "stdio",
        "command": "node",
        "args": [
-         "/absolute/path/to/your/home/.claude/mcp/vps_remote/index.js"
+         "/Users/mohamedchami/.claude/mcp/vps_remote/index.js"
        ]
      }
    }
    ```
+   *(Note: Adjust the absolute path to point to your specific installation directory).*
 
-3. Restart your Claude CLI.
+3. **Restart your AI CLI**
+   Restart Claude Code to ensure the new MCP server is loaded.
 
-## Usage
+## 🛠️ Usage Examples
 
-Simply ask your AI assistant to execute a command on your VPS.
+You don't need to learn any complex commands. Just speak naturally to your AI:
 
-**Example Prompts:**
-- "Check the docker logs on my VPS at user@192.168.1.50"
-- "Upload my local build folder to user@example.com:/var/www/html"
-- "Download the nginx config from root@myserver to my desktop"
+- 🔍 *"Can you check the docker logs on my VPS? My username is root and the IP is 192.168.1.10"*
+- 🚀 *"Upload this newly generated build folder to my remote server at admin@example.com:/var/www/html"*
+- 📄 *"Download the configuration file from my remote server so we can analyze it locally."*
 
-## Security
+## 🛡️ Security & Authentication
 
-This MCP server executes commands directly using Node.js `child_process.exec`. It relies entirely on your local `ssh` and `scp` configuration.
-- No passwords or credentials are hardcoded.
-- You must manage your SSH keys securely via `ssh-agent`.
-- **Warning:** Granting an AI the ability to execute arbitrary SSH commands means the AI can perform destructive actions on the remote server. Use with caution and ideally within Auto Mode so you can review commands before execution.
+This MCP server relies completely on your host system's native `ssh` and `scp` binaries. 
 
-## License
+- **SSH Keys Required**: The server assumes you have SSH key-based authentication configured. It does not handle interactive password prompts. If your key requires a passphrase, ensure your `ssh-agent` is running.
+- **No Stored Credentials**: The server does not store, cache, or hardcode any credentials, IPs, or usernames.
+- **Zero Local Shell Injection**: Command arguments are passed directly to the binary execution layer, bypassing the local shell entirely.
+- **Caution**: Granting an AI the ability to execute SSH commands means the AI can perform destructive actions on the remote server. We recommend using this within an environment where you can approve actions (like Claude Code's standard permission mode) before they execute.
 
-MIT
+## 📝 License
+
+Released under the MIT License.
