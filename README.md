@@ -1,6 +1,7 @@
 <div align="center">
   <h1>🚀 MCP Server: VPS Remote Control</h1>
-  <p><strong>A secure, seamless bridge between your AI Assistant (like Claude) and your remote servers.</strong></p>
+  <p><strong>A secure, seamless bridge between your AI Assistant and your remote servers.</strong></p>
+  <p><i>Works with Claude Code, Antigravity (agy), Codex, Cursor, Windsurf, and any MCP-compatible client!</i></p>
 </div>
 
 ---
@@ -16,17 +17,17 @@ Instead of manually logging into your VPS to check logs, restart services, or de
 ```mermaid
 sequenceDiagram
     participant User
-    participant AI (Claude Code)
+    participant AI (e.g., agy / Claude)
     participant MCP Server (Local)
     participant VPS (Remote Server)
     
-    User->>AI (Claude Code): "Check the nginx logs on my VPS"
-    AI (Claude Code)->>MCP Server (Local): Call tool: execute_ssh_command
+    User->>AI (e.g., agy / Claude): "Check the nginx logs on my VPS"
+    AI (e.g., agy / Claude)->>MCP Server (Local): Call tool: execute_ssh_command
     Note over MCP Server (Local): Safely spawns SSH process
     MCP Server (Local)->>VPS (Remote Server): ssh user@host 'tail -n 50 /var/log/nginx/error.log'
     VPS (Remote Server)-->>MCP Server (Local): Returns logs
-    MCP Server (Local)-->>AI (Claude Code): Passes logs back to AI
-    AI (Claude Code)-->>User: "Here are the errors I found in your logs..."
+    MCP Server (Local)-->>AI (e.g., agy / Claude): Passes logs back to AI
+    AI (e.g., agy / Claude)-->>User: "Here are the errors I found in your logs..."
 ```
 
 ## ✨ Features
@@ -36,42 +37,98 @@ sequenceDiagram
 - 📥 **`scp_download`**: Download remote files from the server directly to your local machine.
 - 🔒 **Secure by Design**: Built using `execFile` to prevent local shell injection vulnerabilities. Zero hardcoded passwords or IP addresses.
 
-## ⚙️ Installation & Setup
+## ⚙️ Installation
 
-1. **Clone the Repository**
-   Clone this project to a directory on your machine (e.g., `~/.claude/mcp/vps_remote`):
-   ```bash
-   git clone https://github.com/MohamedCHAMI/mcp-server-vps-remote.git ~/.claude/mcp/vps_remote
-   cd ~/.claude/mcp/vps_remote
-   npm install
-   ```
+First, clone and build the repository on your machine:
 
-2. **Configure Claude Code**
-   Add the following configuration to your global `~/.claude.json` file under the `mcpServers` object:
+```bash
+git clone https://github.com/MohamedCHAMI/mcp-server-vps-remote.git ~/mcp-server-vps-remote
+cd ~/mcp-server-vps-remote
+npm install
+```
 
-   ```json
-   "mcpServers": {
-     "vps-remote": {
-       "type": "stdio",
-       "command": "node",
-       "args": [
-         "/Users/mohamedchami/.claude/mcp/vps_remote/index.js"
-       ]
-     }
-   }
-   ```
-   *(Note: Adjust the absolute path to point to your specific installation directory).*
+---
 
-3. **Restart your AI CLI**
-   Restart Claude Code to ensure the new MCP server is loaded.
+## 🤖 Supported Agents & Configuration
+
+Because this tool is built on the universal **Model Context Protocol (MCP)**, it works seamlessly with a variety of AI coding assistants. Choose your preferred assistant below to see how to configure it.
+
+### 1. Antigravity CLI (`agy`)
+Antigravity allows global and project-level MCP configurations.
+To configure globally, edit `~/.gemini/config/mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "vps-remote": {
+      "command": "node",
+      "args": ["/absolute/path/to/your/home/mcp-server-vps-remote/index.js"]
+    }
+  }
+}
+```
+
+### 2. Claude Code CLI (`claude`)
+Claude Code configures MCP servers in its global config file. 
+Run `claude mcp add` in your terminal, or manually edit `~/.claude.json`:
+
+```json
+{
+  "mcpServers": {
+    "vps-remote": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/absolute/path/to/your/home/mcp-server-vps-remote/index.js"]
+    }
+  }
+}
+```
+
+### 3. Codex CLI
+If your Codex setup supports MCP over stdio, add it to your configuration file (often located in `~/.codex/config.json`):
+
+```json
+{
+  "mcpServers": {
+    "vps-remote": {
+      "command": "node",
+      "args": ["/absolute/path/to/your/home/mcp-server-vps-remote/index.js"]
+    }
+  }
+}
+```
+
+### 4. Cursor IDE
+Cursor supports MCP servers natively inside the IDE settings.
+1. Open Cursor Settings > Features > MCP.
+2. Click **+ Add New MCP Server**.
+3. Name it `vps-remote`.
+4. Set the Type to `stdio`.
+5. Set the Command to: `node /absolute/path/to/your/home/mcp-server-vps-remote/index.js`
+
+### 5. Cline (VS Code Extension)
+In VS Code, open the Cline configuration file by clicking the MCP icon in the sidebar and adding:
+
+```json
+{
+  "mcpServers": {
+    "vps-remote": {
+      "command": "node",
+      "args": ["/absolute/path/to/your/home/mcp-server-vps-remote/index.js"]
+    }
+  }
+}
+```
+
+---
 
 ## 🛠️ Usage Examples
 
-You don't need to learn any complex commands. Just speak naturally to your AI:
+Once configured, simply speak naturally to your AI:
 
 - 🔍 *"Can you check the docker logs on my VPS? My username is root and the IP is 192.168.1.10"*
 - 🚀 *"Upload this newly generated build folder to my remote server at admin@example.com:/var/www/html"*
-- 📄 *"Download the configuration file from my remote server so we can analyze it locally."*
+- 📄 *"Download the nginx configuration file from my remote server so we can analyze it locally."*
 
 ## 🛡️ Security & Authentication
 
@@ -80,7 +137,6 @@ This MCP server relies completely on your host system's native `ssh` and `scp` b
 - **SSH Keys Required**: The server assumes you have SSH key-based authentication configured. It does not handle interactive password prompts. If your key requires a passphrase, ensure your `ssh-agent` is running.
 - **No Stored Credentials**: The server does not store, cache, or hardcode any credentials, IPs, or usernames.
 - **Zero Local Shell Injection**: Command arguments are passed directly to the binary execution layer, bypassing the local shell entirely.
-- **Caution**: Granting an AI the ability to execute SSH commands means the AI can perform destructive actions on the remote server. We recommend using this within an environment where you can approve actions (like Claude Code's standard permission mode) before they execute.
 
 ## 📝 License
 
