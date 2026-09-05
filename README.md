@@ -12,6 +12,14 @@ The **VPS Remote Control** MCP (Model Context Protocol) server allows your local
 
 Instead of manually logging into your VPS to check logs, restart services, or deploy code, you simply tell your AI to do it. The AI uses this MCP server to seamlessly execute the necessary bash commands directly on your server.
 
+### 🌟 Killer Use Case: Seamless Session Transfer to VPS
+Tired of your local machine doing all the heavy lifting? With this MCP server, you can effectively "transfer" your local AI session (from Claude, Agy, Codex, etc.) straight to your VPS! 
+
+You can instruct your AI to:
+1. Package your local code and upload it to the VPS using `scp_upload`.
+2. Run installation scripts, start docker containers, or execute long-running build tasks on the VPS using `execute_ssh_command`.
+3. Keep the workflow going remotely—acting as an always-on remote worker while your local machine stays fast and clean!
+
 ### How it Works
 
 ```mermaid
@@ -104,6 +112,7 @@ Once configured, simply speak naturally to your AI:
 - 🔍 *"Can you check the docker logs on my VPS? My username is root and the IP is 192.168.1.10"*
 - 🚀 *"Upload this newly generated build folder to my remote server at admin@example.com:/var/www/html"*
 - 📄 *"Download the nginx configuration file from my remote server so we can analyze it locally."*
+- 🔄 *"Transfer my current workspace to the VPS and run the database migration script remotely."*
 
 ## 🛡️ Security & Authentication
 
