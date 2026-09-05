@@ -17,17 +17,17 @@ Instead of manually logging into your VPS to check logs, restart services, or de
 ```mermaid
 sequenceDiagram
     participant User
-    participant AI (e.g., agy / Claude)
-    participant MCP Server (Local)
-    participant VPS (Remote Server)
+    participant AI as AI (e.g., agy / Claude)
+    participant MCP as MCP Server (Local)
+    participant VPS as VPS (Remote Server)
     
-    User->>AI (e.g., agy / Claude): "Check the nginx logs on my VPS"
-    AI (e.g., agy / Claude)->>MCP Server (Local): Call tool: execute_ssh_command
-    Note over MCP Server (Local): Safely spawns SSH process
-    MCP Server (Local)->>VPS (Remote Server): ssh user@host 'tail -n 50 /var/log/nginx/error.log'
-    VPS (Remote Server)-->>MCP Server (Local): Returns logs
-    MCP Server (Local)-->>AI (e.g., agy / Claude): Passes logs back to AI
-    AI (e.g., agy / Claude)-->>User: "Here are the errors I found in your logs..."
+    User->>AI: "Check the nginx logs on my VPS"
+    AI->>MCP: Call tool: execute_ssh_command
+    Note over MCP: Safely spawns SSH process
+    MCP->>VPS: ssh user@host 'tail -n 50 /var/log/nginx/error.log'
+    VPS-->>MCP: Returns logs
+    MCP-->>AI: Passes logs back to AI
+    AI-->>User: "Here are the errors I found in your logs..."
 ```
 
 ## ✨ Features
