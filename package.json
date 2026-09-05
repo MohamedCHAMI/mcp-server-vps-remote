@@ -1,16 +1,13 @@
 {
-  "name": "vps_remote",
-  "version": "1.0.0",
-  "description": "",
+  "name": "mcp-server-vps-remote",
+  "version": "1.0.1",
+  "description": "VPS Remote Control MCP Server",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "type": "module",
+  "scripts": {
+    "install-mcp": "node install.js"
+  },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.30.0"
+    "@modelcontextprotocol/sdk": "^1.0.0"
   }
 }

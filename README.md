@@ -39,7 +39,7 @@ sequenceDiagram
 
 ## ⚙️ Installation
 
-First, clone and build the repository on your machine:
+1. Clone and build the repository on your machine:
 
 ```bash
 git clone https://github.com/MohamedCHAMI/mcp-server-vps-remote.git ~/mcp-server-vps-remote
@@ -47,66 +47,28 @@ cd ~/mcp-server-vps-remote
 npm install
 ```
 
+2. Run the automated configuration script. This will detect your installed AI CLIs (Claude, Agy, Codex) and automatically configure the MCP server for them!
+
+```bash
+npm run install-mcp
+```
+
+*(Restart your AI CLI after running this command!)*
+
 ---
 
-## 🤖 Supported Agents & Configuration
+## 🤖 Manual Configuration
 
-Because this tool is built on the universal **Model Context Protocol (MCP)**, it works seamlessly with a variety of AI coding assistants. Choose your preferred assistant below to see how to configure it.
+If the automated script didn't detect your IDE, or if you are using a GUI-based assistant like Cursor or Cline, follow the manual steps below:
 
-### 1. Antigravity CLI (`agy`)
-Antigravity allows global and project-level MCP configurations.
-To configure globally, edit `~/.gemini/config/mcp_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "vps-remote": {
-      "command": "node",
-      "args": ["/absolute/path/to/your/home/mcp-server-vps-remote/index.js"]
-    }
-  }
-}
-```
-
-### 2. Claude Code CLI (`claude`)
-Claude Code configures MCP servers in its global config file. 
-Run `claude mcp add` in your terminal, or manually edit `~/.claude.json`:
-
-```json
-{
-  "mcpServers": {
-    "vps-remote": {
-      "type": "stdio",
-      "command": "node",
-      "args": ["/absolute/path/to/your/home/mcp-server-vps-remote/index.js"]
-    }
-  }
-}
-```
-
-### 3. Codex CLI
-If your Codex setup supports MCP over stdio, add it to your configuration file (often located in `~/.codex/config.json`):
-
-```json
-{
-  "mcpServers": {
-    "vps-remote": {
-      "command": "node",
-      "args": ["/absolute/path/to/your/home/mcp-server-vps-remote/index.js"]
-    }
-  }
-}
-```
-
-### 4. Cursor IDE
-Cursor supports MCP servers natively inside the IDE settings.
+### 1. Cursor IDE
 1. Open Cursor Settings > Features > MCP.
 2. Click **+ Add New MCP Server**.
 3. Name it `vps-remote`.
 4. Set the Type to `stdio`.
 5. Set the Command to: `node /absolute/path/to/your/home/mcp-server-vps-remote/index.js`
 
-### 5. Cline (VS Code Extension)
+### 2. Cline (VS Code Extension)
 In VS Code, open the Cline configuration file by clicking the MCP icon in the sidebar and adding:
 
 ```json
@@ -116,6 +78,19 @@ In VS Code, open the Cline configuration file by clicking the MCP icon in the si
       "command": "node",
       "args": ["/absolute/path/to/your/home/mcp-server-vps-remote/index.js"]
     }
+  }
+}
+```
+
+### 3. Claude Code / Antigravity / Codex
+If you prefer to configure them manually, simply edit their respective config files (`~/.claude.json`, `~/.gemini/config/mcp_config.json`, or `~/.codex/config.json`) and add:
+
+```json
+"mcpServers": {
+  "vps-remote": {
+    "type": "stdio",
+    "command": "node",
+    "args": ["/absolute/path/to/your/home/mcp-server-vps-remote/index.js"]
   }
 }
 ```
