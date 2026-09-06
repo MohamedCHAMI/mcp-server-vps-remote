@@ -125,3 +125,126 @@ This MCP server relies completely on your host system's native `ssh` and `scp` b
 ## 📝 License
 
 Released under the MIT License.
+
+<br>
+
+<details>
+<summary><strong>🎥 Want to make a video about this tool? (Generated Omni Flash Prompts)</strong></summary>
+
+We used the **Stickman Video Director** skill to generate a complete storyboard and production prompt package to explain this tool! You can copy and paste the 6 prompts below into Google's Gemini Omni Flash to generate a 60-second animated explainer video.
+
+### 🎬 Prompt 1: The Hook
+> Generate a 10-second 16:9 video at 720p, 24 FPS with synchronized audio.
+> 
+> **Visual Style & Constraints:** Use a flat, uniform, digitally pure-white canvas background. Absolutely no gray or off-white tint, texture, grain, gradients, vignette, shadows, ambient occlusion, lighting falloff, bloom, fog, color grading, or three-dimensional background depth. Use rapid scene changes, kinetic motion-graphic transformations, and frequent visual events, while preserving an identical stick-figure design, constant line weight, and strict temporal consistency. Character must be a simple stick figure with a hollow circular head, no face, no clothing, no filled body, stable proportions, and uniform medium black line weight. Limit accent colors strictly to Electric Blue and Warning Red. Do not include any visible words, letters, numbers, captions, subtitles, interface copy, logos, or watermarks.
+> 
+> **Composition:** Center-weighted action, fast-paced panic.
+> 
+> **Action Sequence:**
+> **[0–3s]:** A black stick figure stands frantically typing on a laptop that is glowing Warning Red. 
+> **[3–7s]:** The laptop starts smoking and shaking violently as heavy AI tasks overload it. 
+> **[7–10s]:** The laptop explodes into a massive cloud of Warning Red smoke, leaving the stick figure covered in soot.
+> 
+> **Audio:**
+> **Dialogue:** "Is your local machine overheating from running heavy AI coding agents? Keeping your agent trapped locally slows everything down." (Audio only. Do not add, omit, paraphrase, repeat, reorder, caption, subtitle, or visually transcribe words).
+> **Voice:** Bright, energetic adult female voice speaking natural American English.
+> **BGM & SFX:** Frantic, ticking lo-fi beat. Synchronize rapid typing at [1s], a kettle whistling sound at [4s], and a cartoon explosion at [7s]. Keep voiceover dominant over BGM.
+> 
+> **Negative Constraints:** No photorealism, no 3D rendering, no facial features, no hair, no clothing, no extra limbs, no malformed anatomy, no broken line weight, no inverted polarity, no visible writing.
+
+### 🎬 Prompt 2: The Problem
+> Generate a 10-second 16:9 video at 720p, 24 FPS with synchronized audio.
+> 
+> **Visual Style & Constraints:** Use a flat, uniform, digitally pure-white canvas background. Absolutely no gray or off-white tint... (No texture, grain, depth). Character must be a simple stick figure... (hollow circular head, uniform medium black line weight). Limit accent colors to Electric Blue and Warning Red. No visible writing.
+> 
+> **Composition:** Split screen or vast empty gap showing disconnection.
+> 
+> **Action Sequence:**
+> **[0–3s]:** The red smoke clears to reveal the stick figure standing on a small floating island on the left. 
+> **[3–7s]:** On the right, a massive, powerful server rack appears, but a giant, bottomless canyon separates them. 
+> **[7–10s]:** The stick figure tries to throw a glowing Electric Blue paper airplane across the canyon, but it falls short and plummets into the abyss.
+> 
+> **Audio:**
+> **Dialogue:** "The real problem? Your AI assistant is disconnected from your production VPS, forcing you to manually copy-paste code and restart servers." (Audio only).
+> **Voice:** Bright, energetic adult female voice speaking natural American English.
+> **BGM & SFX:** Drone-like, echoing beat. Synchronize a heavy thud as the server appears at [4s] and a sad whistle sound as the plane falls at [8s].
+> 
+> **Negative Constraints:** No photorealism, no 3D rendering, no facial features, no hair, no clothing, no extra limbs, no malformed anatomy, no broken line weight, no visible writing.
+
+### 🎬 Prompt 3: The Solution
+> Generate a 10-second 16:9 video at 720p, 24 FPS with synchronized audio.
+> 
+> **Visual Style & Constraints:** Use a flat, uniform, digitally pure-white canvas background... Character must be a simple stick figure... Limit accent colors strictly to Electric Blue and Warning Red. No visible writing.
+> 
+> **Composition:** Dynamic low-angle framing, bridging the gap.
+> 
+> **Action Sequence:**
+> **[0–3s]:** Fast zoom out from the falling plane to reveal a glowing Electric Blue toolbox falling from the sky into the stick figure's hands. 
+> **[3–7s]:** The figure opens the box, and a solid Electric Blue bridge instantly shoots out, seamlessly connecting the two floating islands. 
+> **[7–10s]:** The figure excitedly runs across the glowing bridge. As they cross, the screen completely fills with a bright Electric Blue flash.
+> 
+> **Audio:**
+> **Dialogue:** "Enter the VPS Remote Control MCP Server. It acts as a secure, seamless bridge, giving your AI direct SSH and SCP access to your remote server." (Audio only).
+> **Voice:** Bright, energetic adult female voice.
+> **BGM & SFX:** Upbeat, energetic lo-fi beat drops! Synchronize a magical chime at [2s], a heavy sci-fi deployment sound at [5s], and running footsteps at [7s].
+> 
+> **Negative Constraints:** No photorealism, no 3D rendering, no facial features, no clothing, no visible writing.
+
+### 🎬 Prompt 4: The Process
+> Generate a 10-second 16:9 video at 720p, 24 FPS with synchronized audio.
+> 
+> **Visual Style & Constraints:** Use a flat, uniform, digitally pure-white canvas background... Character must be a simple stick figure... Limit accent colors strictly to Electric Blue and Warning Red. No visible writing.
+> 
+> **Composition:** Lateral tracking left to right.
+> 
+> **Action Sequence:**
+> **[0–3s]:** The blue flash clears to show the stick figure standing proudly in front of the massive server rack. 
+> **[3–7s]:** The figure snaps their fingers, and glowing Electric Blue gears and wrenches appear, automatically flying into the server to perform maintenance. 
+> **[7–10s]:** The server hums to life, radiating positive Electric Blue energy waves that ripple outward and cover the camera lens entirely.
+> 
+> **Audio:**
+> **Dialogue:** "Now, your AI can automatically package your local session, upload it, and execute long-running build tasks directly on the remote machine." (Audio only).
+> **Voice:** Bright, energetic adult female voice.
+> **BGM & SFX:** Steady upbeat rhythm. Synchronize a clean finger snap at [3s], mechanical ratcheting sounds at [5s], and a deep electronic hum at [8s].
+> 
+> **Negative Constraints:** No photorealism, no 3D rendering, no facial features, no clothing, no visible writing.
+
+### 🎬 Prompt 5: The Magic Feature (Session Transfer)
+> Generate a 10-second 16:9 video at 720p, 24 FPS with synchronized audio.
+> 
+> **Visual Style & Constraints:** Use a flat, uniform, digitally pure-white canvas background... Character must be a simple stick figure... Limit accent colors strictly to Electric Blue and Warning Red. No visible writing.
+> 
+> **Composition:** Foreground to background depth transition.
+> 
+> **Action Sequence:**
+> **[0–3s]:** The blue wave washes away to reveal the stick figure relaxing on a couch, holding a smartphone. 
+> **[3–7s]:** The smartphone projects a glowing Electric Blue hologram of the server cheerfully spinning in the background. 
+> **[7–10s]:** The stick figure gives a relaxed thumbs up to the camera while the hologram continues to work. The smartphone screen shines brightly, blinding the camera.
+> 
+> **Audio:**
+> **Dialogue:** "The best part? You can transfer your entire AI session to the VPS, close your laptop, and monitor the remote agent straight from your phone!" (Audio only).
+> **Voice:** Bright, energetic adult female voice.
+> **BGM & SFX:** Relaxed, triumphant beat. Synchronize a high-tech hologram activation sound at [4s] and a pleasant ding at [8s].
+> 
+> **Negative Constraints:** No photorealism, no 3D rendering, no facial features, no clothing, no visible writing.
+
+### 🎬 Prompt 6: Call to Action
+> Generate a 10-second 16:9 video at 720p, 24 FPS with synchronized audio.
+> 
+> **Visual Style & Constraints:** Use a flat, uniform, digitally pure-white canvas background... Character must be a simple stick figure... Limit accent colors strictly to Electric Blue and Warning Red. No visible writing.
+> 
+> **Composition:** Wide hero shot, very stable framing.
+> 
+> **Action Sequence:**
+> **[0–3s]:** The screen flash clears to show a massive, cinematic 16:9 terminal window icon. 
+> **[3–7s]:** The stick figure jumps and high-fives the terminal. It explodes with joyful Electric Blue confetti. 
+> **[7–10s]:** The stick figure takes a grand bow as the entire scene slowly fades to absolute white.
+> 
+> **Audio:**
+> **Dialogue:** "Don't trap your AI on your desktop. Install the VPS Remote Control MCP Server today and give your agent global reach!" (Audio only).
+> **Voice:** Bright, energetic adult female voice.
+> **BGM & SFX:** Triumphant closing chord. Synchronize a high-five slap at [4s] and a party popper explosion at [5s].
+> 
+> **Negative Constraints:** No photorealism, no 3D rendering, no facial features, no clothing, no visible writing.
+
+</details>
