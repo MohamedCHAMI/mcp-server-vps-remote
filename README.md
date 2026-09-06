@@ -24,7 +24,7 @@ You can instruct your AI to:
 ### 🎬 Explainer Video (Part 1: The Hook)
 Check out this 10-second generated clip explaining why local AI needs remote access:
 <br>
-https://raw.githubusercontent.com/MohamedCHAMI/mcp-server-vps-remote/main/assets/hook.mp4
+![Explainer Video](assets/hook.gif)
 
 
 ### How it Works
