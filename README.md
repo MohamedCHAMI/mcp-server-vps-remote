@@ -20,6 +20,13 @@ You can instruct your AI to:
 2. Run installation scripts, start docker containers, or execute long-running build tasks on the VPS using `execute_ssh_command`.
 3. Keep the workflow going remotely—acting as an always-on remote worker while your local machine stays fast and clean!
 
+
+### 🎬 Explainer Video (Part 1: The Hook)
+Check out this 10-second generated clip explaining why local AI needs remote access:
+<br>
+<video src="https://github.com/MohamedCHAMI/mcp-server-vps-remote/raw/main/assets/hook.mp4" controls width="100%"></video>
+
+
 ### How it Works
 
 ```mermaid
